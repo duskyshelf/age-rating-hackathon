@@ -11,7 +11,8 @@
       "matches": ["<all_urls>"],
       "js": [
         "bower_components/jquery-2.1.4.min/jquery-2.1.4.min.js",
-        "content.js"
+        "content.js",
+	"popup.js"
       ]
     }
   ],
@@ -21,5 +22,14 @@
   "browser_action": {
     "default_icon": "icon.png"
   },
-  "options_page": "options.html"
+  "options_page": "options.html",
+
+  "web_accessible_resources": [
+    "icon-error.png",
+    "images/*.png",
+    "style/double-rainbow.css",
+    "script/double-rainbow.js",
+    "script/main.js",
+    "templates/*"
+  ]
 }
