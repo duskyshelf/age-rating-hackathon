@@ -27,6 +27,7 @@
   "web_accessible_resources": [
     "icon-error.png",
     "images/*.png",
+    "images/*.jpg",
     "style/double-rainbow.css",
     "script/double-rainbow.js",
     "script/main.js",

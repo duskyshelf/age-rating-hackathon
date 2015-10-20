@@ -19,12 +19,18 @@ $(document).ready(function() {
           console.log(fullTitle);
           var firstIndex = 1000;
           var secondIndex = 1000;
+          var thirdIndex = 1000;
+          var fourthIndex = 1000;
 
           if (fullTitle.indexOf(" (") != -1 ) { firstIndex = fullTitle.indexOf(" ("); }
           if (fullTitle.indexOf(" - ") != -1) {secondIndex = fullTitle.indexOf(" - "); }
-
+          if (fullTitle.indexOf(" Official") != -1) {thirdIndex = fullTitle.indexOf(" Official"); }
+          if (fullTitle.indexOf(" Trailer") != -1) {fourthIndex = fullTitle.indexOf(" Trailer"); }
           var truncateAt = Math.min( firstIndex,
-                                     secondIndex );
+                                     secondIndex,
+                                     thirdIndex,
+                                     fourthIndex
+                                   );
           // console.log(truncateAt);
 
 
@@ -33,13 +39,13 @@ $(document).ready(function() {
 
           console.log(trimmedString);
 
-          var RatingApiUrl = "https://cd4a7834.ngrok.io/rating/?name=" + trimmedString;
+          var RatingApiUrl = "https://65d039e8.ngrok.io/rating/?name=" + trimmedString;
 
           $.getJSON(RatingApiUrl).then(function(data) {
+            console.log(data);
             var videoRating = parseInt(data.age);
             console.log("rating result");
             console.log(videoRating);
-
 
           // console.log(data.results[6].formatted_address);
 
@@ -56,9 +62,8 @@ $(document).ready(function() {
             // console.log(oldEnoughToWatch);
 
 
-
-
-            if(videoRating != "Failure"){
+            console.log(!isNaN(videoRating))
+            if(!isNaN(videoRating)){
               if(!oldEnoughToWatch) {
                 myPlayer.innerHTML = ' ';
                 show_pop_up(videoRating, oldEnoughToWatch);

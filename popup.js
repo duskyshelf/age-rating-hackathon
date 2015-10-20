@@ -9,28 +9,30 @@ iframeElement.setAttribute("style","width: 100%; height: 100%;");
 wrapperDiv.appendChild(iframeElement);
 
 modalDialogParentDiv = document.createElement("div");
-modalDialogParentDiv.setAttribute("style","position: absolute; width: 550px; height: 300px; border: 1px solid rgb(51, 102, 153); padding: 10px; background-color: rgb(255, 255, 255); z-index: 2001; overflow: auto; text-align: center; top: 149px; left: 497px;");
+modalDialogParentDiv.setAttribute("style","position: absolute; width: 590px; height: 370px; border: 1px solid rgb(51, 102, 153); padding: 10px; background-color: rgb(255, 255, 255); z-index: 2001; overflow: auto; text-align: center; top: 149px; left: 497px;");
 
 modalDialogSiblingDiv = document.createElement("div");
 
 modalDialogTextDiv = document.createElement("div");
 modalDialogTextDiv.setAttribute("style" , "text-align:center");
-modalDialogTextDiv.innerHTML = ageRating;
 
 
 
 modalDialogTextSpan = document.createElement("span");
 modalDialogText = document.createElement("strong");
-modalDialogText.innerHTML = oldEnoughToWatch;
+modalDialogText.innerHTML = '';
 
 breakElement = document.createElement("br");
 imageElement = document.createElement("img");
-imageElement.src = chrome.extension.getURL("images/icon-error.png");
+imageElement.setAttribute("style" , "width: 100%; height: 100%; text-align:center");
+if (ageRating == 12) { console.log('12 fired');
+  imageElement.src = chrome.extension.getURL("images/Nicam12.jpg"); }
+if (ageRating == 16) { console.log('16 fired');
+  imageElement.src = chrome.extension.getURL("images/Nicam16.jpg"); }
 
 // modalDialogTextSpan.appendChild(modalDialogText);
 // modalDialogTextDiv.appendChild(breakElement);
 // modalDialogTextDiv.appendChild(modalDialogTextSpan);
-modalDialogTextDiv.appendChild(breakElement);
 modalDialogTextDiv.appendChild(imageElement);
 
 modalDialogSiblingDiv.appendChild(modalDialogTextDiv);
