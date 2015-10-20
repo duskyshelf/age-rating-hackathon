@@ -16,8 +16,17 @@ $(document).ready(function() {
         $.getJSON(bingurl).then(function(data) {
           console.log(data.resourceSets[0].resources[0].address.countryRegion);
           var fullTitle = $("title").text();
-          var truncateAt = fullTitle.indexOf(" (");
+          console.log(fullTitle);
+
+          var firstIndex = fullTitle.indexOf(" (");
+          var secondIndex = fullTitle.indexOf(" - ");
+
+          var truncateAt = Math.max( fullTitle.indexOf(" ("),
+                                     fullTitle.indexOf(" - ") );
+
+
           var trimmedString = fullTitle.substring(0, truncateAt);
+
           console.log(trimmedString);
 
           var RatingApiUrl = "https://cd4a7834.ngrok.io/rating/?name=" + trimmedString;
@@ -33,7 +42,7 @@ $(document).ready(function() {
           chrome.runtime.sendMessage({method: "getStatus"}, function(response) {
             // THIS IS THE LOCAL STORAGE AGE PARAM
             var ageSetting = response.ageParam;
-            var oldEnoughToWatch = response.ageParam >= data.age;
+            var oldEnoughToWatch = response.ageParam >= videoRating;
             console.log("age setting");
             console.log(ageSetting);
             console.log("allowed?");
