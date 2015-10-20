@@ -17,20 +17,23 @@ $(document).ready(function() {
           var trimmedString = fullTitle.substring(0, truncateAt);
           console.log(trimmedString);
 
-          var RatingApiUrl = "http://0.tcp.ngrok.io:50427/rating/?name=" + trimmedString;
+          var RatingApiUrl = "https://cd4a7834.ngrok.io/rating/?name=" + trimmedString;
 
           $.getJSON(RatingApiUrl).then(function(data) {
             console.log("rating result");
-            console.log(data);
-          });
+            console.log(data.age);
 
 
           // console.log(data.results[6].formatted_address);
 
           chrome.runtime.sendMessage({method: "getStatus"}, function(response) {
             // THIS IS THE LOCAL STORAGE AGE PARAM
-            // console.log(response.ageParam);
+            console.log("age setting");
+            console.log(response.ageParam);
+            console.log("allowed?");
+            console.log(response.ageParam >= data.age);
 
+          });
           });
 
         });
