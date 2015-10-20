@@ -9,7 +9,7 @@ iframeElement.setAttribute("style","width: 100%; height: 100%;");
 wrapperDiv.appendChild(iframeElement);
 
 modalDialogParentDiv = document.createElement("div");
-modalDialogParentDiv.setAttribute("style","position: absolute; width: 350px; border: 1px solid rgb(51, 102, 153); padding: 10px; background-color: rgb(255, 255, 255); z-index: 2001; overflow: auto; text-align: center; top: 149px; left: 497px;");
+modalDialogParentDiv.setAttribute("style","position: absolute; width: 550px; height: 300px; border: 1px solid rgb(51, 102, 153); padding: 10px; background-color: rgb(255, 255, 255); z-index: 2001; overflow: auto; text-align: center; top: 149px; left: 497px;");
 
 modalDialogSiblingDiv = document.createElement("div");
 
