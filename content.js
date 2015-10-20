@@ -1,8 +1,8 @@
 
 $(document).ready(function() {
-  console.log("document ready");
   var myPlayer = document.getElementById('movie_player');
-              // myPlayer.stopVideo();
+  console.log(myPlayer);
+  console.log("document ready");
   var lati;
   var longi;
   var url;
@@ -17,12 +17,16 @@ $(document).ready(function() {
           console.log(data.resourceSets[0].resources[0].address.countryRegion);
           var fullTitle = $("title").text();
           console.log(fullTitle);
+          var firstIndex = 1000;
+          var secondIndex = 1000;
 
-          var firstIndex = fullTitle.indexOf(" (");
-          var secondIndex = fullTitle.indexOf(" - ");
+          if (fullTitle.indexOf(" (") != -1 ) { firstIndex = fullTitle.indexOf(" ("); }
+          if (fullTitle.indexOf(" - ") != -1) {secondIndex = fullTitle.indexOf(" - "); }
 
-          var truncateAt = Math.max( fullTitle.indexOf(" ("),
-                                     fullTitle.indexOf(" - ") );
+          var truncateAt = Math.min( firstIndex,
+                                     secondIndex );
+          // console.log(truncateAt);
+
 
 
           var trimmedString = fullTitle.substring(0, truncateAt);
@@ -32,7 +36,7 @@ $(document).ready(function() {
           var RatingApiUrl = "https://cd4a7834.ngrok.io/rating/?name=" + trimmedString;
 
           $.getJSON(RatingApiUrl).then(function(data) {
-            var videoRating = data.age;
+            var videoRating = parseInt(data.age);
             console.log("rating result");
             console.log(videoRating);
 
@@ -41,21 +45,27 @@ $(document).ready(function() {
 
           chrome.runtime.sendMessage({method: "getStatus"}, function(response) {
             // THIS IS THE LOCAL STORAGE AGE PARAM
-            var ageSetting = response.ageParam;
-            var oldEnoughToWatch = response.ageParam >= videoRating;
-            console.log("age setting");
-            console.log(ageSetting);
-            console.log("allowed?");
-            console.log(oldEnoughToWatch);
+            var ageSetting = parseInt(response.ageParam);
+            var oldEnoughToWatch = (ageSetting >= videoRating);
 
-            if(!oldEnoughToWatch) {
+            // console.log("age setting");
+            // console.log("allowed?");
+            // console.log(ageSetting);
+            // console.log(videoRating);
+            // console.log(ageSetting >= videoRating);
+            // console.log(oldEnoughToWatch);
 
-            }
+
 
 
             if(videoRating != "Failure"){
-              show_pop_up(videoRating, oldEnoughToWatch);
+              if(!oldEnoughToWatch) {
+                myPlayer.innerHTML = ' ';
+                show_pop_up(videoRating, oldEnoughToWatch);
+              // chrome.runtime.sendMessage({type:'show_pop_up_new'});
+              }
             }
+
 
 
           });

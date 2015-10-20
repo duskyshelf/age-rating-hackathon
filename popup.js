@@ -25,11 +25,11 @@ modalDialogText.innerHTML = oldEnoughToWatch;
 
 breakElement = document.createElement("br");
 imageElement = document.createElement("img");
-imageElement.src = chrome.extension.getURL("images/icon-error.jpg");
+imageElement.src = chrome.extension.getURL("images/icon-error.png");
 
-modalDialogTextSpan.appendChild(modalDialogText);
-modalDialogTextDiv.appendChild(breakElement);
-modalDialogTextDiv.appendChild(modalDialogTextSpan);
+// modalDialogTextSpan.appendChild(modalDialogText);
+// modalDialogTextDiv.appendChild(breakElement);
+// modalDialogTextDiv.appendChild(modalDialogTextSpan);
 modalDialogTextDiv.appendChild(breakElement);
 modalDialogTextDiv.appendChild(imageElement);
 
