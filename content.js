@@ -1,9 +1,8 @@
 
 $(document).ready(function() {
   console.log("document ready");
-              // var myPlayer = document.getElementById('movie_player');
+  var myPlayer = document.getElementById('movie_player');
               // myPlayer.stopVideo();
-  console.log(document);
   var lati;
   var longi;
   var url;
@@ -41,10 +40,13 @@ $(document).ready(function() {
             console.log(oldEnoughToWatch);
 
             if(!oldEnoughToWatch) {
+
             }
 
-            show_pop_up(videoRating, oldEnoughToWatch);
 
+            if(videoRating != "Failure"){
+              show_pop_up(videoRating, oldEnoughToWatch);
+            }
 
 
           });
