@@ -1,5 +1,8 @@
+
 $(document).ready(function() {
   console.log("document ready");
+  var myPlayer = document.getElementById('movie_player');
+              // myPlayer.stopVideo();
   var lati;
   var longi;
   var url;
@@ -13,24 +16,49 @@ $(document).ready(function() {
         $.getJSON(bingurl).then(function(data) {
           console.log(data.resourceSets[0].resources[0].address.countryRegion);
           var fullTitle = $("title").text();
-          var truncateAt = fullTitle.indexOf(" (");
+          console.log(fullTitle);
+
+          var firstIndex = fullTitle.indexOf(" (");
+          var secondIndex = fullTitle.indexOf(" - ");
+
+          var truncateAt = Math.max( fullTitle.indexOf(" ("),
+                                     fullTitle.indexOf(" - ") );
+
+
           var trimmedString = fullTitle.substring(0, truncateAt);
+
           console.log(trimmedString);
 
-          var RatingApiUrl = "http://0.tcp.ngrok.io:50427/rating/?name=" + trimmedString;
+          var RatingApiUrl = "https://cd4a7834.ngrok.io/rating/?name=" + trimmedString;
 
           $.getJSON(RatingApiUrl).then(function(data) {
+            var videoRating = data.age;
             console.log("rating result");
-            console.log(data);
-          });
+            console.log(videoRating);
 
 
           // console.log(data.results[6].formatted_address);
 
           chrome.runtime.sendMessage({method: "getStatus"}, function(response) {
             // THIS IS THE LOCAL STORAGE AGE PARAM
-            // console.log(response.ageParam);
+            var ageSetting = response.ageParam;
+            var oldEnoughToWatch = response.ageParam >= videoRating;
+            console.log("age setting");
+            console.log(ageSetting);
+            console.log("allowed?");
+            console.log(oldEnoughToWatch);
 
+            if(!oldEnoughToWatch) {
+
+            }
+
+
+            if(videoRating != "Failure"){
+              show_pop_up(videoRating, oldEnoughToWatch);
+            }
+
+
+          });
           });
 
         });
