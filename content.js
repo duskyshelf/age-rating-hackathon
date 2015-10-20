@@ -1,5 +1,9 @@
+
 $(document).ready(function() {
   console.log("document ready");
+              // var myPlayer = document.getElementById('movie_player');
+              // myPlayer.stopVideo();
+  console.log(document);
   var lati;
   var longi;
   var url;
@@ -35,7 +39,13 @@ $(document).ready(function() {
             console.log(ageSetting);
             console.log("allowed?");
             console.log(oldEnoughToWatch);
+
+            if(!oldEnoughToWatch) {
+            }
+
             show_pop_up(videoRating, oldEnoughToWatch);
+
+
 
           });
           });
