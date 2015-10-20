@@ -20,18 +20,22 @@ $(document).ready(function() {
           var RatingApiUrl = "https://cd4a7834.ngrok.io/rating/?name=" + trimmedString;
 
           $.getJSON(RatingApiUrl).then(function(data) {
+            var videoRating = data.age;
             console.log("rating result");
-            console.log(data.age);
+            console.log(videoRating);
 
 
           // console.log(data.results[6].formatted_address);
 
           chrome.runtime.sendMessage({method: "getStatus"}, function(response) {
             // THIS IS THE LOCAL STORAGE AGE PARAM
+            var ageSetting = response.ageParam;
+            var oldEnoughToWatch = response.ageParam >= data.age;
             console.log("age setting");
-            console.log(response.ageParam);
+            console.log(ageSetting);
             console.log("allowed?");
-            console.log(response.ageParam >= data.age);
+            console.log(oldEnoughToWatch);
+            show_pop_up(videoRating, oldEnoughToWatch);
 
           });
           });

@@ -1,4 +1,4 @@
-function show_pop_up ()
+function show_pop_up (ageRating, oldEnoughToWatch)
 {
 wrapperDiv = document.createElement("div");
 wrapperDiv.setAttribute("style","position: absolute; left: 0px; top: 0px; background-color: rgb(255, 255, 255); opacity: 0.5; z-index: 2000; height: 1083px; width: 100%;");
@@ -13,20 +13,23 @@ modalDialogParentDiv.setAttribute("style","position: absolute; width: 350px; bor
 
 modalDialogSiblingDiv = document.createElement("div");
 
-modalDialogTextDiv = document.createElement("div"); 
+modalDialogTextDiv = document.createElement("div");
 modalDialogTextDiv.setAttribute("style" , "text-align:center");
+modalDialogTextDiv.innerHTML = ageRating;
 
-modalDialogTextSpan = document.createElement("span"); 
-modalDialogText = document.createElement("strong"); 
-modalDialogText.innerHTML = "Sorry but this program is blocked in your country";
 
-breakElement = document.createElement("br"); 
-imageElement = document.createElement("img"); 
+
+modalDialogTextSpan = document.createElement("span");
+modalDialogText = document.createElement("strong");
+modalDialogText.innerHTML = oldEnoughToWatch;
+
+breakElement = document.createElement("br");
+imageElement = document.createElement("img");
 imageElement.src = chrome.extension.getURL("images/icon-error.jpg");
 
 modalDialogTextSpan.appendChild(modalDialogText);
-modalDialogTextDiv.appendChild(modalDialogTextSpan);
 modalDialogTextDiv.appendChild(breakElement);
+modalDialogTextDiv.appendChild(modalDialogTextSpan);
 modalDialogTextDiv.appendChild(breakElement);
 modalDialogTextDiv.appendChild(imageElement);
 
