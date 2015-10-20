@@ -5,11 +5,6 @@
     <meta content="Bootply" name="generator">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="icons/famfamfam_flags/famfamfam-flags.css">
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -20,7 +15,7 @@
   <div class="col-md-12">
         <div class="navbar-header">
           
-          <a class="navbar-brand" href="#">oopa-api</a>
+          <a class="navbar-brand" href="#">Bootstrap</a>
           <button data-target="#navbar-collapse1" data-toggle="collapse" class="navbar-toggle" type="button">
           <i class="glyphicon glyphicon-search"></i>
           </button>
@@ -35,7 +30,21 @@
                 </div>
               </div>
           </form>
-        
+          <ul class="nav navbar-nav navbar-right">
+             <li><a target="_ext" href="http://www.bootply.com">Bootply+</a></li>
+             <li>
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="glyphicon glyphicon-bell"></i></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><span class="badge pull-right">40</span>Link</a></li>
+                  <li><a href="#"><span class="badge pull-right">2</span>Link</a></li>
+                  <li><a href="#"><span class="badge pull-right">0</span>Link</a></li>
+                  <li><a href="#"><span class="label label-info pull-right">1</span>Link</a></li>
+                  <li><a href="#"><span class="badge pull-right">13</span>Link</a></li>
+                </ul>
+             </li>
+             <li><a id="btnToggle" href="#"><i class="glyphicon glyphicon-th-large"></i></a></li>
+             <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
+           </ul>
         </div>  
      </div> 
 </nav>
@@ -43,6 +52,7 @@
     <div class="col-md-12">
         <div class="navbar-header">
           
+          <a data-toggle="dropdown" class="navbar-btn btn btn-default btn-plus dropdown-toggle" style="margin-left:15px;" href="#"><i style="color:#dd1111;" class="glyphicon glyphicon-home"></i> Home <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
           <ul class="nav dropdown-menu">
               <li><a href="#"><i style="color:#1111dd;" class="glyphicon glyphicon-user"></i> Profile</a></li>
               <li><a href="#"><i style="color:#0000aa;" class="glyphicon glyphicon-dashboard"></i> Dashboard</a></li>
@@ -61,7 +71,13 @@
           </button>
       
         </div>
-    
+        <div id="navbar-collapse2" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+             <li class="active"><a href="#">Posts</a></li>
+             <li><a data-toggle="modal" role="button" href="#loginModal">Login</a></li>
+             <li><a data-toggle="modal" role="button" href="#aboutModal">About</a></li>
+           </ul>
+        </div>  
      </div> 
 </div>
 
@@ -72,20 +88,26 @@
   
   
   <div class="row">
-<!--    <div class="col-md-12"><h2>Posts</h2></div> -->
+    <div class="col-md-12"><h2>Posts</h2></div>
     
      <div class="">
       <div class="panel panel-default">
+           <div class="panel-heading"><a class="pull-right" href="#">View all</a> <h4>Profiles</h4></div>
         <div class="panel-body">
+              Check out some of our member profiles..
+              <hr>
               <div class="well well-sm">
                 <div class="media">
                     <a href="#" class="thumbnail pull-left">
                         <img src="//placehold.it/80" class="media-object">
                     </a>
                     <div class="media-body">
-                        <h4 class="media-heading">Toy Story 3</h4>
-                    <p><span class="label label-info"><i class="famfamfam-flag-gb"></i> PG</span></p>
-                      
+                        <h4 class="media-heading">John Doe</h4>
+                    <p><span class="label label-info">10 photos</span> <span class="label label-primary">89 followers</span></p>
+                        <p>
+                           <a class="btn btn-xs btn-default" href="#"><span class="glyphicon glyphicon-comment"></span> Message</a>
+                           <a class="btn btn-xs btn-default" href="#"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
+                        </p>
                     </div>
                 </div>
                </div>
@@ -100,6 +122,8 @@
   
 </div>
   <!-- script references -->
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
   
 </body></html>

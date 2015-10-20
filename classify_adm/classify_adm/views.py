@@ -5,6 +5,7 @@ from django.http import HttpResponse,HttpRequest
 import requests
 import json
 from django.http import JsonResponse
+import subprocess
 # Create your views here.
 
 def film_old_nojson(request):
@@ -20,6 +21,37 @@ def film(request):
 
     response.write("{\"age\" : \"" + str(result) + "\"}");
     return response;
+def search(request):
+	name = "Toy"
+	req = "egrep -i "+name+" /tmp/troll"
+	list_of_names = []
+	resp_http = "";
+	resp_json = '''
+{
+    "results": [
+        {
+            "name": "Toy Story",
+            "countries": [
+                {
+                    "code": "gb",
+                    "rating": "pg"
+                },
+                {
+                    "code": "nl",
+                    "rating": "pg"
+                }
+            ]
+        }
+    ]
+}
+'''
+	with open("/tmp/troll") as fp:
+		for line in fp:
+			if line.startswith(name):
+				list_of_names.append(line)
+
+	return HttpResponse (list_of_names);
+
 def film_2(request):
     name = request.GET['name']
     result = get_rating(get_rating_id(name))
@@ -40,6 +72,7 @@ def get_rating_id(name):
 	id = json_resp[0]["value"]
 	return str(id);
 	#return json_resp + "<br\><br\><br\>"
+
 def get_rating(id):
 	if(id == None):
 		return "Failure"
